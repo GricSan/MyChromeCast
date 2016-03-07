@@ -5,7 +5,7 @@
     <string name="app_name">MyChromeCast</string>
     <string name="google_app_id">286F40B2</string>
 
-    <string name="video_url">blob:https%3A//www.youtube.com/dbeaff11-ec8e-4eed-b494-2db5517b2080</string>
+    <string name="video_url">https://www.youtube.com/watch?v=eYNCCu0y-Is</string>
 
     <string name="play_video">Play Video</string>
     <string name="pause_video">Pause Video</string>
