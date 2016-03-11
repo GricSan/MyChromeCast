@@ -69,9 +69,7 @@ public class MainActivity extends AppCompatActivity {
         // Configure Cast device discovery
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
         mMediaRouteSelector = new MediaRouteSelector.Builder()
-                .addControlCategory(
-                        CastMediaControlIntent.categoryForCast(getString(R.string.google_app_id)))
-                .build();
+                .addControlCategory(CastMediaControlIntent.categoryForCast(getString(R.string.google_app_id))).build();
         mMediaRouterCallback = new MediaRouterCallback();
     }
 
@@ -107,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class MediaRouterCallback extends MediaRouter.Callback {
+
         @Override
         public void onRouteSelected(MediaRouter router, MediaRouter.RouteInfo info) {
             initCastClientListener();
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 reconnectChannels(hint);
             } else {
                 try {
-                    Cast.CastApi.launchApplication(mApiClient, getString(R.string.google_app_id), false)
+                    Cast.CastApi.launchApplication(mApiClient, getString(R.string.google_app_id))
                             .setResultCallback(
                                     new ResultCallback<Cast.ApplicationConnectionResult>() {
                                         @Override
@@ -207,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchReceiver() {
-        Cast.CastOptions.Builder apiOptionsBuilder = Cast.CastOptions.builder(mSelectedDevice, mCastClientListener);
+        Cast.CastOptions.Builder apiOptionsBuilder = new Cast.CastOptions.Builder(mSelectedDevice, mCastClientListener);
 
         ConnectionCallbacks mConnectionCallbacks = new ConnectionCallbacks();
         ConnectionFailedListener mConnectionFailedListener = new ConnectionFailedListener();
